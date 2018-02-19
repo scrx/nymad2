@@ -1,6 +1,7 @@
 import Position from './position';
 import KB from './key_codes';
 import MonstersRepository from './monsters_repository';
+import NPCsRepository from './npcs_repository';
 
 export default class WorldMap {
   constructor(ctx, maps, player, controller, eventDispatcher) {
@@ -11,10 +12,15 @@ export default class WorldMap {
     this.eventDispatcher = eventDispatcher;
 
     this.moveAnimation = false;
+    
+    this.npcs = NPCsRepository.getByMap(this.player.map);
+   // this.npcs
+    console.log(this.npcs);
   }
 
   draw() {
     this.drawBoard();
+    this.drawNPCs();
     this.drawPlayer();
   }
 
@@ -76,5 +82,18 @@ export default class WorldMap {
       this.moveAnimation = true;
       setTimeout(() => { this.moveAnimation = false; }, 250);
     }
+  }
+
+  drawNPCs() {
+   // //console.log("drawNPCs xx s");
+      this.npcs.forEach((npc) => {
+       // opponent.image.draw(this.ctx, opponent.arenaPosition.x, opponent.arenaPosition.y);
+        npc.image.draw(this.ctx, npc.x, npc.y);
+       //console.log('draw each NPCs');
+       // this.drawHPBar(opponent);
+      });
+ //   drawOpponents() {
+
+  //  }
   }
 }

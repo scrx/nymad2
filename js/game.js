@@ -27,6 +27,9 @@ export default class Game {
   start() {
     this.ctx = this.getDrawingCtx();
     this.scene = new WorldMap(this.ctx, this.maps, this.player, this.controller, (args) => this.eventDispatcher(args));
+    
+    
+
     this.ticker.loop();
   }
 
